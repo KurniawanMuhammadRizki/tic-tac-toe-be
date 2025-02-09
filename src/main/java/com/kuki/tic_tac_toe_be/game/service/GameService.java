@@ -5,5 +5,6 @@ import com.kuki.tic_tac_toe_be.game.entity.Game;
 
 public interface GameService {
      GameResponseDTO createGame(int size);
-     Game getGame(String gameid);
+     Game getGame(String gameId);
+     Game saveGame(Game game);
 }

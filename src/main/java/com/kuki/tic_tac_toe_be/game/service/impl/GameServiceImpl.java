@@ -50,6 +50,11 @@ public class GameServiceImpl implements GameService {
           return game;
      }
 
+     @Override
+     public Game saveGame(Game game) {
+          return gameRepository.save(game);
+     }
+
      private GameResponseDTO convertToGameResponseDTO(Game game) {
           GameResponseDTO gameResponseDTO = new GameResponseDTO();
           gameResponseDTO.setGameId(game.getId());
