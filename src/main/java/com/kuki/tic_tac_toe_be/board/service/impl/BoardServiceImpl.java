@@ -2,6 +2,7 @@ package com.kuki.tic_tac_toe_be.board.service.impl;
 
 import com.kuki.tic_tac_toe_be.board.entity.Board;
 import com.kuki.tic_tac_toe_be.board.service.BoardService;
+import com.kuki.tic_tac_toe_be.exception.GameException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -9,7 +10,7 @@ public class BoardServiceImpl implements BoardService {
      @Override
      public  Board createBoard(int size){
           if(size<3){
-               throw new IllegalArgumentException("Board size must be greater than 3");
+               throw new GameException("Board size must be greater than 3");
           }
           return new Board(size);
      }
@@ -23,7 +24,7 @@ public class BoardServiceImpl implements BoardService {
      @Override
      public void updateBoard(Board board, int row, int col, String symbol){
           if (!isValidMove(board, row, col)) {
-               throw new IllegalArgumentException("Invalid move");
+               throw new GameException("Invalid move");
           }
           board.getGrid()[row][col] = symbol;
      }
