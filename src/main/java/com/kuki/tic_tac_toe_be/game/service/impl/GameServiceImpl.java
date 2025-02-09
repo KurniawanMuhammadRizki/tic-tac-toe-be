@@ -38,7 +38,7 @@ public class GameServiceImpl implements GameService {
           game.setStatus(GameStatus.PLAYING);
           gameRepository.save(game);
 
-          return convertToGameResponseDTO(game);
+          return game.ToGameResponseDTO();
      }
 
      @Override
@@ -55,17 +55,5 @@ public class GameServiceImpl implements GameService {
           return gameRepository.save(game);
      }
 
-     private GameResponseDTO convertToGameResponseDTO(Game game) {
-          GameResponseDTO gameResponseDTO = new GameResponseDTO();
-          gameResponseDTO.setGameId(game.getId());
-          gameResponseDTO.setBoard(game.getBoard().getGrid());
-          gameResponseDTO.setCurrentPlayer(game.getCurrentPlayer().getSymbol());
-          gameResponseDTO.setStatus(game.getStatus().toString());
-
-          if (game.getWinner() != null) {
-               gameResponseDTO.setWinner(game.getWinner().getSymbol());
-          }
-          return gameResponseDTO;
-     }
 
 }
