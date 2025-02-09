@@ -41,6 +41,15 @@ public class GameServiceImpl implements GameService {
           return convertToGameResponseDTO(game);
      }
 
+     @Override
+     public Game getGame(String gameId){
+          Game game =  gameRepository.findById(gameId);
+          if(game == null){
+               throw new IllegalArgumentException("Game not found");
+          }
+          return game;
+     }
+
      private GameResponseDTO convertToGameResponseDTO(Game game) {
           GameResponseDTO gameResponseDTO = new GameResponseDTO();
           gameResponseDTO.setGameId(game.getId());
