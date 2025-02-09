@@ -1,6 +1,7 @@
 package com.kuki.tic_tac_toe_be.move.service.impl;
 
 import com.kuki.tic_tac_toe_be.board.service.BoardService;
+import com.kuki.tic_tac_toe_be.exception.GameException;
 import com.kuki.tic_tac_toe_be.game.dto.GameResponseDTO;
 import com.kuki.tic_tac_toe_be.game.entity.Game;
 import com.kuki.tic_tac_toe_be.game.entity.GameStatus;
@@ -27,10 +28,10 @@ public class MoveServiceImpl implements MoveService {
           Game game = gameService.getGame(move.getGameId());
 
           if(game.getStatus() != GameStatus.PLAYING){
-               throw new IllegalStateException("Game already finished");
+               throw new GameException("Game already finished");
           }
           if (!game.getCurrentPlayer().getSymbol().equals(move.getPlayerSymbol())) {
-               throw new IllegalStateException("Not your turn");
+               throw new GameException("Not your turn");
           }
 
           boardService.updateBoard(game.getBoard(), move.getRow(),
