@@ -7,7 +7,6 @@ import com.kuki.tic_tac_toe_be.game.entity.GameStatus;
 import com.kuki.tic_tac_toe_be.game.service.GameService;
 import com.kuki.tic_tac_toe_be.move.entity.Move;
 import com.kuki.tic_tac_toe_be.move.service.MoveService;
-import com.kuki.tic_tac_toe_be.player.service.PlayerService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,7 +24,7 @@ public class MoveServiceImpl implements MoveService {
           Game game = gameService.getGame(move.getGameId());
 
           if(game.getStatus() != GameStatus.PLAYING){
-               throw new IllegalStateException("Game already finished")''
+               throw new IllegalStateException("Game already finished");
           }
           if (!game.getCurrentPlayer().getSymbol().equals(move.getPlayerSymbol())) {
                throw new IllegalStateException("Not your turn");
@@ -36,9 +35,8 @@ public class MoveServiceImpl implements MoveService {
                   move.getPlayerSymbol());
 
           updateGameStatus(game, move.getPlayerSymbol());
-
-          return gameService.sa
-
+          gameService.saveGame(game);
+          return game.ToGameResponseDTO();
      }
 
      private void updateGameStatus(Game game, String playerSymbol) {

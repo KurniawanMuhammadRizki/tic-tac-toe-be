@@ -13,14 +13,14 @@ public class Game {
      private Player winner;
      private GameStatus status;
 
-      GameResponseDTO convertToGameResponseDTO() {
+      public GameResponseDTO ToGameResponseDTO() {
           GameResponseDTO gameResponseDTO = new GameResponseDTO();
           gameResponseDTO.setGameId(this.getId());
           gameResponseDTO.setBoard(this.getBoard().getGrid());
           gameResponseDTO.setCurrentPlayer(this.getCurrentPlayer().getSymbol());
           gameResponseDTO.setStatus(this.getStatus().toString());
 
-          if (game.getWinner() != null) {
+          if (this.getWinner() != null) {
                gameResponseDTO.setWinner(this.getWinner().getSymbol());
           }
           return gameResponseDTO;
