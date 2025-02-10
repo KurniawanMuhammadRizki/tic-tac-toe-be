@@ -6,7 +6,7 @@ import com.kuki.tic_tac_toe_be.game.service.GameService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://kuki-tic-tac-toe.vercel.app"})
 @RequestMapping("/api/v1/game")
 public class GameController {
      private final GameService gameService;
