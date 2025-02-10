@@ -6,10 +6,12 @@ import lombok.Data;
 public class Board {
      private String[][] grid;
      private int size;
+     private int winningCondition;
 
-     public Board(int size) {
+     public Board(int size, int winningCondition) {
           this.size = size;
           this.grid = new String[size][size];
+          this.winningCondition = winningCondition;
           initializeBoard();
      }
 

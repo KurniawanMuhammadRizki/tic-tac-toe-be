@@ -9,11 +9,20 @@ import org.springframework.stereotype.Service;
 public class BoardServiceImpl implements BoardService {
 
      @Override
-     public Board createBoard(int size) {
+     public Board createBoard(int size, int winningCondition) {
           if (size < 3) {
                throw new GameException("Board size must be greater than 3");
           }
-          return new Board(size);
+
+          if (winningCondition < 3) {
+               throw new GameException("Winning condition must greater than 3");
+          }
+
+          if (winningCondition > size) {
+               throw new GameException("Winning condition must less than Board size");
+          }
+
+          return new Board(size, winningCondition);
      }
 
      @Override
@@ -32,7 +41,7 @@ public class BoardServiceImpl implements BoardService {
      }
 
      private int getWinCondition(Board board) {
-          return (board.getSize() > 3) ? 4 : 3;
+          return (board.getWinningCondition());
      }
 
      private boolean checkRows(Board board, String symbol) {

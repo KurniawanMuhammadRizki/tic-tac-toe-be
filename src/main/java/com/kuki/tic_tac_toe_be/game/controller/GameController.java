@@ -16,8 +16,8 @@ public class GameController {
      }
 
      @PostMapping("/start")
-     public GameResponseDTO startGame(@RequestParam int size) {
-          return gameService.createGame(size);
+     public GameResponseDTO startGame(@RequestParam int size, @RequestParam int winningCondition) {
+          return gameService.createGame(size, winningCondition);
      }
 
      @GetMapping("/{gameId}")

@@ -26,10 +26,10 @@ public class GameServiceImpl implements GameService {
      }
 
      @Override
-     public GameResponseDTO createGame(int size){
-          Board board = boardService.createBoard(size);
+     public GameResponseDTO createGame(int size, int winningCondition){
+          Board board = boardService.createBoard(size,winningCondition);
           Player p1 = playerService.createPlayer("X");
-          Player p2 = playerService.createPlayer("O");
+
 
           Game game = new Game();
           game.setId(RandomStringUtils.randomAlphanumeric(6));
