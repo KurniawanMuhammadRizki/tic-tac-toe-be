@@ -10,6 +10,6 @@ FROM openjdk:22-slim
 WORKDIR /app
 LABEL maintainer="kuki"
 LABEL company="kukilabs"
-COPY --from=build /app/target/tic-tac-toe-be.jar /app/app.jar
+COPY --from=build /app/target/*.jar /app/app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
