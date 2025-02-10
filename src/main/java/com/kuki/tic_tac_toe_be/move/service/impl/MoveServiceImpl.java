@@ -37,7 +37,6 @@ public class MoveServiceImpl implements MoveService {
           boardService.updateBoard(game.getBoard(), move.getRow(),
                   move.getCol(),
                   move.getPlayerSymbol());
-
           updateGameStatus(game, move.getPlayerSymbol());
           gameService.saveGame(game);
           return game.ToGameResponseDTO();
